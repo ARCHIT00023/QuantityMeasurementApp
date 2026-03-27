@@ -1,0 +1,77 @@
+@Test
+void testConversion_FeetToInches() {
+    assertEquals(12.0,
+            QuantityMeasurementApp.convert(1.0,
+                    QuantityMeasurementApp.LengthUnit.FEET,
+                    QuantityMeasurementApp.LengthUnit.INCH),
+            1e-6);
+}
+
+@Test
+void testConversion_InchesToFeet() {
+    assertEquals(2.0,
+            QuantityMeasurementApp.convert(24.0,
+                    QuantityMeasurementApp.LengthUnit.INCH,
+                    QuantityMeasurementApp.LengthUnit.FEET),
+            1e-6);
+}
+
+@Test
+void testConversion_YardsToInches() {
+    assertEquals(36.0,
+            QuantityMeasurementApp.convert(1.0,
+                    QuantityMeasurementApp.LengthUnit.YARD,
+                    QuantityMeasurementApp.LengthUnit.INCH),
+            1e-6);
+}
+
+@Test
+void testConversion_CmToInch() {
+    assertEquals(1.0,
+            QuantityMeasurementApp.convert(2.54,
+                    QuantityMeasurementApp.LengthUnit.CM,
+                    QuantityMeasurementApp.LengthUnit.INCH),
+            1e-6);
+}
+
+@Test
+void testConversion_Zero() {
+    assertEquals(0.0,
+            QuantityMeasurementApp.convert(0.0,
+                    QuantityMeasurementApp.LengthUnit.FEET,
+                    QuantityMeasurementApp.LengthUnit.INCH),
+            1e-6);
+}
+
+@Test
+void testConversion_Negative() {
+    assertEquals(-12.0,
+            QuantityMeasurementApp.convert(-1.0,
+                    QuantityMeasurementApp.LengthUnit.FEET,
+                    QuantityMeasurementApp.LengthUnit.INCH),
+            1e-6);
+}
+
+@Test
+void testConversion_SameUnit() {
+    assertEquals(5.0,
+            QuantityMeasurementApp.convert(5.0,
+                    QuantityMeasurementApp.LengthUnit.FEET,
+                    QuantityMeasurementApp.LengthUnit.FEET),
+            1e-6);
+}
+
+@Test
+void testConversion_InvalidUnit() {
+    assertThrows(IllegalArgumentException.class, () ->
+            QuantityMeasurementApp.convert(1.0, null,
+                    QuantityMeasurementApp.LengthUnit.FEET));
+}
+
+@Test
+void testConversion_NaN() {
+    assertThrows(IllegalArgumentException.class, () ->
+            QuantityMeasurementApp.convert(Double.NaN,
+                    QuantityMeasurementApp.LengthUnit.FEET,
+                    QuantityMeasurementApp.LengthUnit.INCH));
+}
